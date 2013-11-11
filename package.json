@@ -1,0 +1,17 @@
+{
+  "name": "livebots.cc",
+  "version": "0.0.1",
+  "author": "",
+  "dependencies": {
+    "handlebars": "*",
+    "request": "~2.27.0",
+    "geddy": "~0.11.2"
+  },
+  "scripts": {
+    "start": "node node_modules/geddy/bin/cli.js"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": "0.8.x"
+  }
+}
