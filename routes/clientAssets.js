@@ -1,6 +1,7 @@
+var server = require('./../index.js');
 var path = require('path')
 
-module.exports = {
+var clientapp = {
   method: 'GET',
   path: '/{path*}',
   config : {
@@ -9,9 +10,11 @@ module.exports = {
         var staticAssetsPath = path.join(__dirname, '..', 'clientapp');
         return {
           path: staticAssetsPath,
-          listing: false,
+          listing: true,
           index: true 
         };}()
     }
   }
 };
+
+server.route(clientapp);

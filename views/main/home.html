@@ -1,7 +1,49 @@
-<!DOCTYPE html>
-<head> 
-</head>
-<body>
-  <h1>HEY, I'm HOME</h1>
-</body>
-</html>
+{{> header}}
+
+<div class="green">
+  <div class="ink-grid bot-name">
+    <br><h1>Here's a list of all the robots:</h1><br>
+  </div>
+</div>
+
+{{#each bots}}
+  <div class="{{{title-class bot_state}}}">
+    <div class="ink-grid bot-name">
+      <br><a href="/bot/{{bot_id}}"><h1>{{bot_name}}{{{title-phrase bot_state}}}</h1></a><br>
+    </div>
+  </div>
+  <div class="white" style="background-size: cover; background-position:center; background:url({{photourl}}); height:480px;">
+    {{#if bot_state}}
+    <div class="ink-grid">
+      <div class="column-group gutters">
+        <div class="large-70 medium-60 small-100">{{{content-html bot_state photourl livefeedurl}}}</div>
+        <div class="large-20 medium-40 small-100">
+          <br><br>
+          <h2 style="color:#000000">Control it!</h2>
+          <br>
+          {{#each commands}}
+            <button id="{{../bot_id}}" class="ink-button" value="{{this}}">{{this}}</button>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+    {{/if}}
+  </div>
+{{/each}}
+
+<script src="/js/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("button").click(function(){
+    console.log(this)
+    $.post("/bot/"+$(this).attr('id')+"/command",
+    {
+      command:$(this).attr('value'),
+      bot_id:$(this).attr('id'),
+    });
+  });
+});
+</script>
+
+
+{{> footer}}

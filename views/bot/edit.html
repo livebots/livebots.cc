@@ -1,0 +1,67 @@
+{{> header}}
+<div class="white">
+  <div class="ink-grid">
+    <br><h1 style="color:#000000">Edit {{bot_name}}</h1><br>
+
+    <form class="ink-form"  method="post" action="#">
+      <fieldset>
+
+        <div class="ink-grid  control-group ink-label success">
+          <div class="column-group">
+            <div class="large-50">
+              <label style="color:#000000" for="bot_key">Robot Private Key</label> 
+              <div class="control">
+                <input name="bot_key" type="text" placeholder="" value="{{bot_key}}" disabled>
+              </div>
+            </div>
+            <div class="large-50">
+              <label style="color:#000000" for="bot_key">Robot Id</label> 
+              <div class="control">
+                <input name="bot_id" type="text" placeholder="" value="{{bot_id}}" disabled>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label style="color:#000000" for="bot_name">Name</label> 
+          <div class="control">
+            <input name="bot_name" type="text" placeholder="Give your bot a name" value="{{bot_name}}">
+          </div>
+          <label style="color:#000000" for="photourl">Photo Url</label> 
+          <div class="control">
+            <input name="photourl" type="text" placeholder="Share a photo from or bot" value="{{photourl}}">
+          </div>
+          <label style="color:#000000" for="livefeedurl">Live Feed Url</label> 
+          <div class="control">
+            <input name="livefeedurl" type="text" placeholder="Drop a link from your bot's live feed" value="{{livefeedurl}}">
+          </div>
+          <label style="color:#000000" for="description">Description</label> 
+          <div class="control">
+            <input name="description" type="text" placeholder="Describe it!" value="{{description}}">
+          </div>
+          <label style="color:#000000" for="commands">Commands</label> 
+          <div class="control">
+            <input name="commands" type="text" placeholder="commands separated by comma(e.g ON, OFF,...) " value="{{commands}}">
+          </div>
+          <label style="color:#000000" for="address">Location</label> 
+          <div class="control">
+            <input name="address" type="text" placeholder="Where is it??" value="{{address}}">
+          </div>
+          <br>
+          <h5 style="color:#000000" >Is your bot live?</h5>
+          <ul class="control">
+            <select name="bot_state">
+              <option value="yes" selected="{{bot_state}}">YES!!!!</option>
+              <option value="no">Sorry, no...</option>
+            </select>
+          </ul>
+        </div>
+        <div class="form-actions" data-role="controlgroup" data-type="horizontal">
+          <button type="submit" value="Submit" class="ink-button green push-right"><i class="icon-ok"></i> Submit!</button>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>
+{{> footer}}
