@@ -1,0 +1,45 @@
+<div class="" id="homeModal" ng-controller="home">
+
+  <div ng-hide="bots">
+    <h1>Ups, there are no bots, come back later</h1>
+  </div>  
+
+
+  <div ng-show="bots">
+    <div class="green">
+      <div class="ink-grid bot-name">
+        <br><h1>Here's a list of all the robots:</h1><br>
+      </div>
+    </div>
+
+    <div ng-repeat="bot in bots">
+
+      <div class="{{bot.state}}">
+        <div class="ink-grid bot-name">
+          <br><a href="/bot/{{bot.id}}"><h1>{{bot.name}}</h1></a><br>
+        </div>
+      </div>
+
+      <div class="white" style="background-size: cover; background-position:center; background:url({{bot.photoURL}}); height:480px;">
+        
+        <div ng-show="bot.state" class="ink-grid">
+          <div class="column-group gutters">
+            
+            <div class="large-70 medium-60 small-100">{{boy.photoURL}}</div>
+
+            <div class="large-20 medium-40 small-100">
+              <br/><br/>
+              <h2 style="color:#000000">Control it!</h2>
+              <br/>
+              <div ng-repeat="command in bot.commands">
+                <button id="{{bot.id}}" class="ink-button" value="command">{{command}}</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>  
+
+    </div>
+  </div> 
+</div>  

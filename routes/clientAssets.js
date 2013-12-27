@@ -1,13 +1,14 @@
 var server = require('./../index.js');
-var path = require('path')
+var path   = require('path');
 
-var clientapp = {
+var clientAssets = {
   method: 'GET',
   path: '/{path*}',
   config : {
     handler: {
       directory: function(){
-        var staticAssetsPath = path.join(__dirname, '..', 'clientapp');
+        var staticAssetsPath = path.join(__dirname, '..', '/public');
+        console.log(staticAssetsPath);
         return {
           path: staticAssetsPath,
           listing: true,
@@ -17,4 +18,4 @@ var clientapp = {
   }
 };
 
-server.route(clientapp);
+server.route(clientAssets);

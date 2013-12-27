@@ -4,7 +4,9 @@
   "description": "livebots.cc app",
   "main": "index.js",
   "scripts": {
-    "start": "node_modules/.bin/nodemon index.js",
+    "start": "node index.js",
+    "mon": "node_modules/.bin/nodemon index.js",
+    "dist": "node_modules/.bin/browserify -t brfs --debug -e lib/js/livebots.js -o public/js/livebots.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -14,8 +16,6 @@
   "keywords": [
     "livebots",
     "nodebots",
-    "bots",
-    "bots",
     "bots"
   ],
   "author": "David Dias <daviddias.p@gmail.com>",
@@ -28,7 +28,11 @@
     "hapi": "~1.20.0",
     "bunyan": "~0.22.1",
     "request": "~2.30.0",
-    "querystring": "~0.2.0"
+    "querystring": "~0.2.0",
+    "browserify": "~3.14.1",
+    "brfs": "0.0.8",
+    "colors": "~0.6.2",
+    "gaze": "~0.4.3"
   },
   "devDependencies": {
     "nodemon": "~0.7.10"
