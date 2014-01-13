@@ -6,11 +6,11 @@ var wipe    = require('./_wipe.js');
 var server  = require('./../index.js');
 var db      = require('./../db');
 
-wipe(function (){
 
+wipe(function (){
   server.start(function() {
 
-
+    // Write all the tests
 
     test('creates a bot', function(t) {
       request.post({
@@ -26,16 +26,18 @@ wipe(function (){
           bot_visible: true
         }
       }, function(error, response, body){
+        // TODO
+        // Make this test actually significant
+
         var thingie = 'thing';
         t.equal(thingie, 'thing', 'thingie should be thing');
         t.end();
       });
     });
+  
+
+
   });
-
-
-
-
 });
 
 

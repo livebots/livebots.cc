@@ -6,10 +6,8 @@ if (process.env.NODE_ENV === 'test') {
   mongo_url = 'mongodb://localhost/livebots_test';
 }
 
-
 require('./models/bot');
 require('./models/command');
-
 
 mongoose.connect(mongo_url);
 var db = mongoose.connection;
