@@ -7,36 +7,52 @@ var server  = require('./../index.js');
 var db      = require('./../db');
 
 
-wipe(function (){
-  server.start(function() {
+function startTesting(){
+  
+  // 
+  // Playground bots
+  // 
+  // var bot_a = {}
+  // var bot_b = {}
+  // var bot_c = {}
+  // var bot_c = {}
 
-    // Write all the tests
 
-    test('creates a bot', function(t) {
-      request.post({
-        uri: '/bot',
-        json: {
-          bot_id: 'this-is-a-bot-id',
-          bot_name: 'this-is-a-bot-name',
-          commands: ['up','down','left','right'],
-          address: 'tagus',
-          description: 'bot-mai-lindo',
-          photourl: 'pretty-picture',
-          livefeedurl: 'such-live-stream',
-          bot_visible: true
-        }
-      }, function(error, response, body){
-        // TODO
-        // Make this test actually significant
+  // 
+  // Tests
+  // 
+  test('Create a new bot-a', function(t) {
+    request.post({
+      uri: '/bot',
+      json: {
+        bot_id: 'this-is-a-bot-id',
+        bot_name: 'this-is-a-bot-name',
+        commands: ['up','down','left','right'],
+        address: 'tagus',
+        description: 'bot-mai-lindo',
+        photourl: 'pretty-picture',
+        livefeedurl: 'such-live-stream',
+        bot_visible: true
+      }
+    }, function(error, response, body){
+      // TODO
+      // Make this test actually significant
 
-        var thingie = 'thing';
-        t.equal(thingie, 'thing', 'thingie should be thing');
-        t.end();
-      });
+      var thingie = 'thing';
+      t.equal(thingie, 'thing', 'thingie should be thing');
+      t.end();
     });
   });
-});
 
+
+
+}
+
+wipe(function (){
+  server.start(function() {
+    startTesting();
+  });
+});
 
 tap.tearDown(function(){
   server.stop();
