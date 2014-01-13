@@ -63,19 +63,18 @@ function create(request, reply) {
       if (err) {
         return cb(err);
       }
-      console.log('bot saved sucessfuly', reply);
+      if(reply) {
+        cb();
+      } else { // same id        
+        cb(new Error('A bot with the same ID already exists'));
+      }
+
       cb();
     });
     
   }
 
   function done(err) {
-    console.log('VOU AQUI');
-    reply('dasda');
-    console.log('fiz o reply');
-    return;
-
-
     if (err) {
       var error = Hapi.error.badRequest(err.detail);
       reply(error);

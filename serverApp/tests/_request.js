@@ -1,51 +1,55 @@
 var request = require('request');
 
-exports = module.exports = function doRequest(options, cb) {
-  if (typeof options !== 'object'){
-    options = {
-      uri: options
-    };
+exports = module.exports = doRequest;
+
+var PREFIX = 'http://localhost:2000';
+
+exports.prefix = prefix;
+
+function prefix(url) {
+  return PREFIX + url;
+}
+
+function doRequest(options, cb) {
+  if (typeof(options) != 'object') {
+    options = { uri: options };
   }
 
-  if (! options.uri) {
-    return (new Error('options.uri is required'));
-  }
+  if (! options) options = {};
 
-  options.uri = 'http://localhost:8000' + options.uri;
+  if (options.uri.indexOf(PREFIX) != 0)
+    options.uri = PREFIX + options.uri;
 
-  if (! options.json) {
-    options.json = true;
-  }
+  if (! options.json) options.json = true;
 
-  return request(options, replied);
+  request(options, done);
 
-  function replied(err, res, body) {
-    console.log('RECEBI RESPOSTA');
-
-    if (err) {
-      return cb(err);
+  function done(err, res, body) {
+    if (err) return cb(err);
+    var code = res.statusCode;
+    if (code < 200 || code > 299) {
+      var msg = 'response status code: ' + code + '.';
+      if (body) msg += ' Response: ' + (
+        body.error && body.error.message || body.error || body.message || body);
+      var error = new Error(msg)
+      error.code = code;
+      return cb(error, null, code);
     }
-    if (res.statusCode < 200 || res.statusCode >= 300) {
-      err = new Error('response code was ' + res.statusCode);
-      if (body) {
-        err.message += ' — ' + (body.message || body);
-      }
-    }
-    cb(err, body);
+    cb(null, body, code);
   }
-};
+}
 
-['post', 'delete', 'get', 'put'].forEach(inject);
-
+['post', 'put', 'delete'].forEach(inject);
 
 function inject(method) {
-  exports[method] = function(options, cb) {
-    if (typeof options !== 'object') {
-      options = {uri: options};
+  doRequest[method] = function(options, cb) {
+    if (typeof(options) != 'object') {
+      options = { uri: options };
     }
 
-    options.method = method.toUpperCase();
+    if (! options) options = {};
 
-    return exports(options, cb);
+    options.method = method;
+    doRequest(options, cb);
   };
 }
