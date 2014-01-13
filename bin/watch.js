@@ -11,8 +11,8 @@ var pending = false;
 
 var watch = [
   'clientApp/js/**/*.js',
-  'public/css/*.css',
-  'public/partials/*.html',
+  'clientApp/css/**/*.scss',
+  'serverApp/public/partials/*.html',
 ];
 
 gaze(watch, watcher);
@@ -39,8 +39,12 @@ function run() {
 
 function exited(code, signal) {
   executing = false;
-  if (! code) console.log('terminated'.green);
-  else console.error('finished with exit code %d'.red, code);
+  if (! code) {
+    console.log('terminated'.green);
+  }
+  else {
+    console.error('finished with exit code %d'.red, code);
+  }
   if (pending) {
     run();
   }

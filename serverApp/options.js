@@ -9,5 +9,6 @@ module.exports = {
   // },
   cache: {
     engine: 'memory'
-  }
+  },
+  cors: true
 };
