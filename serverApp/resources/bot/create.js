@@ -32,11 +32,11 @@ function create(request, reply) {
     ], done);
 
   function createBot(cb) {
-    bot.id = request.payload.bot_id;
-    bot.name = request.payload.bot_name;
+    bot.id = request.payload.id;
+    bot.name = request.payload.name;
     bot.key = uuid();
     bot.state = false;
-    bot.visible = request.payload.bot_visible || true;
+    bot.visible = request.payload.visible || true;
 
     if (request.payload.address) {
       bot.address = request.payload.address;
@@ -68,7 +68,6 @@ function create(request, reply) {
       } else { // same id        
         cb(new Error('A bot with the same ID already exists'));
       }
-
       cb();
     });
     

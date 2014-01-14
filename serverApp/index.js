@@ -11,15 +11,5 @@ if (process.env.NODE_ENV === 'test'){
 var server     = module.exports = Hapi.createServer('localhost', port, options);
 var routes     = require('./routes');
 
-exports.begin  = function(cb){
-  server.start(function () {
-    logger.info('Server started at: ' + server.info.uri);
-    if(cb) {
-      cb();
-    }
-  });
-};
-
-
 
 

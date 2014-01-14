@@ -7,8 +7,7 @@ module.exports = function (cb) {
   async.series([
     removeBots,
     removeCommands,
-    cb
-  ]);
+  ],cb);
 
   function removeBots(cb){
     Bot.remove({}, function(err) {
