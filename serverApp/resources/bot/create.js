@@ -21,7 +21,10 @@ exports = module.exports = create;
 
 function create(request, reply) {
 
-  // console.log(request);
+  if(request.payload['commands[]']) {
+    request.payload.commands = request.payload['commands[]'];
+  }
+
   console.log(request.payload);
 
   var bot = {};

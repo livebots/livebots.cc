@@ -45,7 +45,7 @@ nav + div {
   margin-bottom: 0px;
 }
 div {
-    color: #fff;
+
 }
 
 /*---- Default Links----*/
@@ -71,7 +71,7 @@ h3,
 h4,
 h5,
 h6 {
-    color: #fff;
+  
 }
 
 /*---- Colors ----*/
@@ -118,4 +118,8 @@ h6 {
 
 .black {
     background-color: #000000;
+}
+
+.white {
+    background-color: #ffffff;
 }
