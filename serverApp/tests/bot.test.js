@@ -79,6 +79,32 @@ function startTesting(){
     });
   });
 
+  test('Create a new bot-c', function(t) {
+    request.post({
+      uri: '/bot',
+      json: bot_c
+    }, function(err, bot, code) {
+      t.equal(bot.id, bot_c.id, 'thingie should be thing');
+      t.equal(bot.name, bot_c.name, 'thingie should be thing');
+      t.equal(bot.address, bot_c.address, 'thingie should be thing');
+      t.equal(bot.description, bot_c.description, 'thingie should be thing');
+      t.equal(bot.photourl, bot_c.photourl, 'thingie should be thing');
+      t.equal(bot.livefeedurl, bot_c.livefeedurl, 'thingie should be thing');
+      t.equal(bot.visible, bot_c.visible, 'thingie should be thing');
+      t.end();
+    });
+  });
+
+  test('Create a repeated bot', function(t) {
+    request.post({
+      uri: '/bot',
+      json: bot_a
+    }, function(err, bot, code) {
+      t.equal(code, 409, 'When repeating ID, a 409 is expected');
+      t.end();
+    });
+  });
+
 
 }
 

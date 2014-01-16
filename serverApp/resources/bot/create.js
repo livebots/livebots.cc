@@ -21,15 +21,25 @@ exports = module.exports = create;
 
 function create(request, reply) {
 
-  // console.log(request);
-  console.log(request.payload);
-
   var bot = {};
 
   async.series([
+      checkBot,
       createBot,
       saveBot,
     ], done);
+
+  function checkBot(cb) {
+    Bot.findByBotId(request.payload.id, function(err, bot) {
+      if (err) {
+        return cb(Hapi.error.internal('Hipcup on the DB' + err.detail));
+      } else if (bot.length > 0) {
+        return cb(Hapi.error.conflict('Bot ID exists: '+request.payload.id));
+      } else {
+        return cb();
+      }
+    });
+  }
 
   function createBot(cb) {
     bot.id = request.payload.id;
@@ -61,22 +71,19 @@ function create(request, reply) {
 
     newBot.save(function (err, reply){
       if (err) {
-        return cb(err);
-      }
-      if(reply) {
+        return cb(Hapi.error.internal('Hipcup on the DB' + err.detail));
+      } else if(reply) {
         cb();
       } else { // same id        
-        cb(new Error('A bot with the same ID already exists'));
+        return cb(Hapi.error.conflict('Bot ID exists: '+request.payload.id));
       }
       cb();
     });
-    
   }
 
   function done(err) {
     if (err) {
-      var error = Hapi.error.badRequest(err.detail);
-      reply(error);
+      reply(err);
     } else {
       reply(bot);
     }
