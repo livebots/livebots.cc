@@ -4,10 +4,10 @@
   "description": "livebots.cc app",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "mon": "node_modules/.bin/nodemon index.js",
+    "start": "node serverApp/start.js",
+    "mon": "node_modules/.bin/nodemon serverApp/start.js",
     "dist": "node_modules/.bin/browserify -t brfs --debug -e clientApp/js/livebots.js -o public/js/livebots.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node_modules/.bin/tap serverApp/tests/*.test.js"
   },
   "repository": {
     "type": "git",
@@ -25,16 +25,20 @@
   },
   "dependencies": {
     "handlebars": "~1.1.2",
-    "hapi": "~1.20.0",
     "bunyan": "~0.22.1",
     "request": "~2.30.0",
     "querystring": "~0.2.0",
-    "browserify": "~3.14.1",
-    "brfs": "0.0.8",
-    "colors": "~0.6.2",
-    "gaze": "~0.4.3"
+    "hapi": "~2.0.0-preview",
+    "async": "~0.2.9",
+    "mongoose": "~3.8.4"
   },
   "devDependencies": {
-    "nodemon": "~0.7.10"
+    "nodemon": "~0.7.10",
+    "colors": "~0.6.2",
+    "gaze": "~0.4.3",
+    "brfs": "0.0.8",
+    "browserify": "~3.20.0",
+    "node-sass": "~0.8.1",
+    "tap": "~0.4.8"
   }
 }
