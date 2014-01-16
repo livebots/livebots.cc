@@ -1,0 +1,69 @@
+<div class="" id="viewModal" ng-controller="bot">
+
+  <div ng-hide="bot">
+    <h1>Not found</h1>
+  </div>  
+
+
+  <div ng-show="bot" class="ink-grid">
+    <br><h1>Edit {{bot.name}}</h1><br>
+    <form class="ink-form" ng-submit="submit()" ng-controller="createBot">
+      <fieldset>
+        <div class="ink-grid  control-group ink-label success">
+          <div class="column-group">
+            <div class="large-50">
+              <label for="bot_key">Robot Private Key</label> 
+              <div class="control">
+                <input name="bot_key" type="text" placeholder="" value="{{bot.key}}" disabled>
+              </div>
+            </div>
+            <div class="large-50">
+              <label for="bot_key">Robot Id</label> 
+              <div class="control">
+                <input name="bot_id" type="text" placeholder="" value="{{bot.id}}" disabled>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label for="name">Name</label> 
+          <div class="control">
+            <input name="name" ng-model="bot.name" type="text" placeholder="Give your bot a name" value="">
+          </div>
+          <label for="photoURL">Photo Url</label> 
+          <div class="control">
+            <input name="photoURL" ng-model="bot.photoURL" type="text" placeholder="Share a photo from or bot" value="">
+          </div>
+          <label for="liveFeedURL">Live Feed Url</label> 
+          <div class="control">
+            <input name="liveFeedURL" ng-model="bot.liveFeedURL" type="text" placeholder="Drop a link from your bot's live feed" value="">
+          </div>
+          <label for="description">Description</label> 
+          <div class="control">
+              <input name="description" ng-model="bot.description" type="text" placeholder="Describe it!" value="">
+          </div>
+          <label for="commands">Commands</label> 
+          <div class="control">
+              <input name="commands" ng-model="bot.commands" type="text" placeholder="commands separated by comma(e.g ON, OFF,...) " value="">
+          </div>
+          <label for="address">Location</label> 
+          <div class="control">
+            <input name="address" ng-model="bot.address" type="text" placeholder="Where is it??" value="">
+          </div>
+          <br>
+          <h5>Is your bot live?</h5>
+          <ul class="control">
+            <select name="bot_state" ng-model="bot.state">
+              <option value="yes" selected="{{bot.state}}">YES!!!!</option>
+              <option value="no">Sorry, no...</option>
+            </select>
+          </ul>
+        </div>
+        <div class="form-actions" data-role="controlgroup" data-type="horizontal">
+          <button type="submit" value="Submit" class="ink-button green push-right"><i class="icon-ok"></i> Submit!</button>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>
