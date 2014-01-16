@@ -57,11 +57,11 @@ function create(request, reply) {
     if (request.payload.description) {
       bot.description = request.payload.description;
     }
-    if (request.payload.photourl) {
-      bot.photourl = request.payload.photourl;
+    if (request.payload.photoURL) {
+      bot.photoURL = request.payload.photoURL;
     }
-    if (request.payload.livefeedurl) {
-      bot.livefeedurl = request.payload.livefeedurl;
+    if (request.payload.liveFeedURL) {
+      bot.liveFeedURL = request.payload.liveFeedURL;
     }
     cb();
   }
