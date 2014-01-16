@@ -33,11 +33,11 @@ server.route(
 
 
 
-// server.route(
-//   { method: 'GET',
-//     path: '/bot/{bot_id}',
-//     handler: bot.get }
-//   );
+server.route(
+  { method: 'GET',
+    path: '/bot/{bot_id}',
+    handler: bot.get }
+  );
 
 
 // server.route(

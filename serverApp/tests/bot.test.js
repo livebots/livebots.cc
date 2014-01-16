@@ -18,9 +18,11 @@ function startTesting(){
     commands: ['up','down','left','right'],
     address: 'tagus',
     description: 'bot-mai-lindo',
-    photourl: 'pretty-picture',
-    livefeedurl: 'such-live-stream',
-    visible: true
+    photoURL: 'pretty-picture',
+    liveFeedURL: 'such-live-stream',
+    state: false,
+    visible: true,
+
   };
   var bot_b = {
     id: 'bot_b',
@@ -28,8 +30,9 @@ function startTesting(){
     commands: ['up','down','left','right'],
     address: 'tagus',
     description: 'bot-mai-lindo',
-    photourl: 'pretty-picture',
-    livefeedurl: 'such-live-stream',
+    photoURL: 'pretty-picture',
+    liveFeedURL: 'such-live-stream',
+    state: false,
     visible: true
   };
   var bot_c = {
@@ -38,15 +41,17 @@ function startTesting(){
     commands: ['up','down','left','right'],
     address: 'tagus',
     description: 'bot-mai-lindo',
-    photourl: 'pretty-picture',
-    livefeedurl: 'such-live-stream',
+    photoURL: 'pretty-picture',
+    liveFeedURL: 'such-live-stream',
+    state: false,
     visible: true
   };
 
 
   // 
-  // Tests
-  // 
+  // Create Tests
+  //  
+
   test('Create a new bot-a', function(t) {
     request.post({
       uri: '/bot',
@@ -56,8 +61,9 @@ function startTesting(){
       t.equal(bot.name, bot_a.name, 'thingie should be thing');
       t.equal(bot.address, bot_a.address, 'thingie should be thing');
       t.equal(bot.description, bot_a.description, 'thingie should be thing');
-      t.equal(bot.photourl, bot_a.photourl, 'thingie should be thing');
-      t.equal(bot.livefeedurl, bot_a.livefeedurl, 'thingie should be thing');
+      t.equal(bot.state, bot_a.state, 'thingie should be thing');
+      t.equal(bot.photoURL, bot_a.photoURL, 'thingie should be thing');
+      t.equal(bot.liveFeedURL, bot_a.liveFeedURL, 'thingie should be thing');
       t.equal(bot.visible, bot_a.visible, 'thingie should be thing');
       t.end();
     });
@@ -72,12 +78,65 @@ function startTesting(){
       t.equal(bot.name, bot_b.name, 'thingie should be thing');
       t.equal(bot.address, bot_b.address, 'thingie should be thing');
       t.equal(bot.description, bot_b.description, 'thingie should be thing');
-      t.equal(bot.photourl, bot_b.photourl, 'thingie should be thing');
-      t.equal(bot.livefeedurl, bot_b.livefeedurl, 'thingie should be thing');
+      t.equal(bot.state, bot_b.state, 'thingie should be thing');
+      t.equal(bot.photoURL, bot_b.photoURL, 'thingie should be thing');
+      t.equal(bot.liveFeedURL, bot_b.liveFeedURL, 'thingie should be thing');
       t.equal(bot.visible, bot_b.visible, 'thingie should be thing');
       t.end();
     });
   });
+
+  test('Create a new bot-c', function(t) {
+    request.post({
+      uri: '/bot',
+      json: bot_c
+    }, function(err, bot, code) {
+      t.equal(bot.id, bot_c.id, 'thingie should be thing');
+      t.equal(bot.name, bot_c.name, 'thingie should be thing');
+      t.equal(bot.address, bot_c.address, 'thingie should be thing');
+      t.equal(bot.description, bot_c.description, 'thingie should be thing');
+      t.equal(bot.state, bot_c.state, 'thingie should be thing');
+      t.equal(bot.photoURL, bot_c.photoURL, 'thingie should be thing');
+      t.equal(bot.liveFeedURL, bot_c.liveFeedURL, 'thingie should be thing');
+      t.equal(bot.visible, bot_c.visible, 'thingie should be thing');
+      t.end();
+    });
+  });
+
+  test('Create a repeated bot', function(t) {
+    request.post({
+      uri: '/bot',
+      json: bot_a
+    }, function(err, bot, code) {
+      t.equal(code, 409, 'When repeating ID, a 409 is expected');
+      t.end();
+    });
+  });
+
+
+
+  // 
+  // Get Tests
+  //  
+
+  test('Get bot-a', function(t) {
+    request({
+      method: 'GET',
+      uri: '/bot/' + encodeURIComponent(bot_a.id)
+    }, function(err, bot, code) {
+      t.equal(bot.id, bot_a.id, 'thingie should be thing');
+      t.equal(bot.name, bot_a.name, 'thingie should be thing');
+      t.equal(bot.address, bot_a.address, 'thingie should be thing');
+      t.equal(bot.description, bot_a.description, 'thingie should be thing');
+      t.equal(bot.photoURL, bot_a.photoURL, 'thingie should be thing');
+      t.equal(bot.liveFeedURL, bot_a.liveFeedURL, 'thingie should be thing');
+      t.equal(bot.visible, bot_a.visible, 'thingie should be thing');
+      t.end();
+    });
+  });
+
+
+
 
 
 }

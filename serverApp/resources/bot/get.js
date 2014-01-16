@@ -1,12 +1,12 @@
 var async          = require('async');
-var Bot            = require('./../db/models/bots.js');
+var Bot            = require('./../../db/models/bot.js');
 var Hapi           = require('hapi');
 
 module.exports = get;
 
-function get(req, res, next) {
+function get(request, reply) {
 
-  var botId = req.payload.id;
+  var botId = request.params.bot_id;
   var bot   = {};
 
   async.series([
@@ -39,27 +39,30 @@ function get(req, res, next) {
         if (result[0].commands) {
           bot.commands = result[0].commands;
         }
-        if (result[0].livefeedurl) {
-          bot.livefeedurl = result[0].livefeedurl;
+        if (result[0].liveFeedURL) {
+          bot.liveFeedURL = result[0].liveFeedURL;
         }
-        if (result[0].photourl) {
-          bot.photourl = result[0].photourl;
+        if (result[0].photoURL) {
+          bot.photoURL = result[0].photoURL;
         }
         if (result[0].description) {
           bot.description = result[0].description;
         }
+        if (result[0].visible) {
+          bot.visible = result[0].visible;
+        }
         cb();
       } else {
-        cb(Hapi.error.badRequest('Not bot with the ID: ', botId));
+        cb(Hapi.error.conflict('No bot with the ID: ' + botId));
       }
     }
   }
 
   function done(err) {
     if (err) {
-      res.send(Hapi.error.badRequest(err.detail));
+      reply(Hapi.error.badRequest(err.detail));
     } else {
-      res.send(bot);
+      reply(bot);
     }
   }
 }
