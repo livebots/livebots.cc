@@ -3,6 +3,7 @@
 angular.module('livebots', [
   'ng',
   'ngRoute',
+  'ngSanitize',
   'livebots.filters',
   'livebots.services',
   'livebots.directives',

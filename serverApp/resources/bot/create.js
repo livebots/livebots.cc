@@ -53,7 +53,9 @@ function create(request, reply) {
     }
     if (request.payload.commands) {
       bot.commands = request.payload.commands;
-    }
+    } else if (request.payload["commands[]"]) {
+      bot.commands = request.payload["commands[]"];
+    } 
     if (request.payload.description) {
       bot.description = request.payload.description;
     }

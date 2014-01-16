@@ -1,7 +1,7 @@
 <div class="" id="viewModal" ng-controller="bot">
 
   <div ng-hide="bot">
-    <h1>Not found</h1>
+    <h1>Bot not found</h1>
   </div>  
 
 
@@ -9,27 +9,28 @@
     <div class="{{bot.state}}">
       <div class="ink-grid bot-name">
         <br><a href="/#/bot/{{bot.id}}"><h1>{{bot.name}}</h1></a><br>
+        <a href="/#/bot/{{bot.id}}/edit" class="ink-button">Edit</a>
       </div>
     </div>
 
     <div class="white" style="background-size: cover; background-position:center; background:url({{bot.photoURL}}); height:480px;">
       
-      <div ng-show="bot.state" class="ink-grid">
+      <div class="ink-grid">
         <div class="column-group gutters">
           
-          <div class="large-70 medium-60 small-100">{{bot.liveFeedURL}}</div>
+          <div class="large-70 medium-60 small-100">
+            <iframe ng-src="{{trustSrc(bot.liveFeedURL)}}" frameborder="0" width="100%" height="480"></iframe>
+          </div>
 
           <div class="large-20 medium-40 small-100">
             <br/><br/>
             <h2 style="color:#000000">Control it!</h2>
             <br/>
             <div ng-repeat="command in bot.commands">
-              <button id="{{bot.id}}" class="ink-button" value="command">{{command}}</button>
+              <button id="{{command}}" class="ink-button" value="command">{{command}}</button>
             </div>
           </div>
         </div>
-      
-        <a href="/#/bot/{{bot.id}}/edit" class="ink-button">Edit</a>
       </div>
     </div>  
   </div> 
