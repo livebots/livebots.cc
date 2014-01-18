@@ -1,15 +1,13 @@
 'use strict';
 
 livebotsController
-  .controller('home', function ($scope, $http) {
-    
-    $http.get('/bot').success(function(data) {
-      console.log(data);
-      $scope.bots = data;
-    });
+  .controller('home', function ($scope, $http, $sce, BotFactory) {
+    $scope.trustSrc = function(src) {
+      return $sce.trustAsResourceUrl(src);
+    }
 
-    // var bots = Bots.query();
-    // console.log(bots);
-    // $scope.bots = bots;
+    BotFactory.getAll(function(response) {
+      $scope.bots = response;
+    });
   });
   

@@ -3,8 +3,8 @@
 var livebotsServices = angular.module('livebots.services', ['ngResource']);
  
 livebotsServices
-  .factory('Bots', function($resource) {
-    return $resource(url_prefix + 'bots', {
-      query: {method: 'GET'}
+  .factory('BotFactory', function($resource) {
+    return $resource('/bot/:botId', null, {
+    	'getAll': {method: 'GET', isArray:true}
     });
   });

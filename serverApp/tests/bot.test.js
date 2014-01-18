@@ -134,6 +134,42 @@ function startTesting(){
       t.end();
     });
   });
+ 
+
+  test('Get bots', function(t) {
+    request({
+      method: 'GET',
+      uri: '/bot'
+    }, function(err, bots, code) {
+      t.equal(bots[0].id, bot_a.id, 'thingie should be thing');
+      t.equal(bots[0].name, bot_a.name, 'thingie should be thing');
+      t.equal(bots[0].address, bot_a.address, 'thingie should be thing');
+      t.equal(bots[0].description, bot_a.description, 'thingie should be thing');
+      t.equal(bots[0].state, bot_a.state, 'thingie should be thing');
+      t.equal(bots[0].photoURL, bot_a.photoURL, 'thingie should be thing');
+      t.equal(bots[0].liveFeedURL, bot_a.liveFeedURL, 'thingie should be thing');
+      t.equal(bots[0].visible, bot_a.visible, 'thingie should be thing');
+
+      t.equal(bots[1].id, bot_b.id, 'thingie should be thing');
+      t.equal(bots[1].name, bot_b.name, 'thingie should be thing');
+      t.equal(bots[1].address, bot_b.address, 'thingie should be thing');
+      t.equal(bots[1].description, bot_b.description, 'thingie should be thing');
+      t.equal(bots[1].state, bot_b.state, 'thingie should be thing');
+      t.equal(bots[1].photoURL, bot_b.photoURL, 'thingie should be thing');
+      t.equal(bots[1].liveFeedURL, bot_b.liveFeedURL, 'thingie should be thing');
+      t.equal(bots[1].visible, bot_b.visible, 'thingie should be thing');
+
+      t.equal(bots[2].id, bot_c.id, 'thingie should be thing');
+      t.equal(bots[2].name, bot_c.name, 'thingie should be thing');
+      t.equal(bots[2].address, bot_c.address, 'thingie should be thing');
+      t.equal(bots[2].description, bot_c.description, 'thingie should be thing');
+      t.equal(bots[2].state, bot_c.state, 'thingie should be thing');
+      t.equal(bots[2].photoURL, bot_c.photoURL, 'thingie should be thing');
+      t.equal(bots[2].liveFeedURL, bot_c.liveFeedURL, 'thingie should be thing');
+      t.equal(bots[2].visible, bot_c.visible, 'thingie should be thing');
+      t.end();
+    });
+  });
 
 
 

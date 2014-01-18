@@ -18,11 +18,11 @@ var bot     = require('./../resources/bot');
 //   );
 
 
-// server.route(
-//   { method: 'GET',
-//     path: '/bot/',
-//     handler: bot.list}
-//   );
+server.route(
+  { method: 'GET',
+    path: '/bot',
+    handler: bot.list}
+  );
 
 
 server.route(

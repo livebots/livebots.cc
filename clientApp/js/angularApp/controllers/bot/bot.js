@@ -1,12 +1,13 @@
 'use strict';
  
 livebotsController
-  .controller('bot', function ($scope, $http, $routeParams, $sce) {
+  .controller('BotController', function ($scope, $http, $routeParams, $sce, BotFactory) {
     $scope.trustSrc = function(src) {
       return $sce.trustAsResourceUrl(src);
     }
-    $http.get('/bot/'+$routeParams.id).success(function(data) {
-      console.log(data);
-      $scope.bot = data;
+
+    BotFactory.get({botId: $routeParams.id}, function(response) {
+      console.log("FACTORY", response)
+      $scope.bot = response;
     });
   });

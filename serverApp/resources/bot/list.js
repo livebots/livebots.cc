@@ -1,13 +1,10 @@
-var joi            = require('joi');
 var async          = require('async');
-var restify        = require('restify');
-var Bot            = require('./../../db/models/bots.js');
+var Bot            = require('./../../db/models/bot.js');
+var Hapi           = require('hapi');
 
-exports = module.exports = list;
+module.exports = list;
 
-/// get bot
-
-function list(req, res, next) {
+function list(request, reply) {
 
   var bots;
 
@@ -27,7 +24,9 @@ function list(req, res, next) {
 
   function done(err) {
     if (err) {
-      res.send(new restify.InvalidArgumentError(err.detail));
-    } else res.send(bots);
+      reply(Hapi.error.badRequest(err.detail));
+    } else {
+      reply(bots);
+    }
   }
 }
