@@ -10,5 +10,10 @@ module.exports = {
   cache: {
     engine: 'memory'
   },
-  cors: true
+  cors: true,
+  state: {
+    cookies: {
+      strictHeader: false
+    }
+  }
 };

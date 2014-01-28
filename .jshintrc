@@ -20,6 +20,6 @@
                       "console": true,
                       "define": true,
                       "require": true,
-                      "personalpageControllers": true
+                      "livebotsControllers": true
   }
 }
