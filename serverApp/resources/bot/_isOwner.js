@@ -1,0 +1,1 @@
+// TODO middleware to verify if the current user is bot_owner

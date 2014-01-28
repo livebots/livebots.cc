@@ -8,7 +8,6 @@ var publicAssets = {
     handler: {
       directory: function() {
         var staticAssetsPath = path.join(__dirname, '../..', '/public');
-        // console.log(staticAssetsPath);
         return {
           path: staticAssetsPath,
           listing: true,
